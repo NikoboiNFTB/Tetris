@@ -1,6 +1,6 @@
 # Tetris
 
-Clanker-made game of Tetris.
+"Make a playable Tetris game" benchmark for various LLMs (local > cloud).
 
 ## Contributing
 
