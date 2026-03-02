@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #2d3436;
+  color: white;
+}
+
+.game-container {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+}
+
+.game-board {
+  width: 500px;
+  height: 800px;
+  background-color: #3498db;
+}
+
+.game-info {
+  padding: 20px;
+  text-align: center;
+}
