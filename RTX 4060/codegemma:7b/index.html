@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tetris</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333;
+        }
+
+        canvas {
+            border: 2px solid #fff;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="200" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const blockSize = 20;
+        const boardWidth = 10;
+        const boardHeight = 20;
+
+        let board = [];
+        for (let i = 0; i < boardHeight; i++) {
+            board[i] = new Array(boardWidth).fill(0);
+        }
+
+        let currentPiece = null;
+        let nextPiece = null;
+
+        function generatePiece() {
+            // Code to generate a random Tetris piece
+        }
+
+        function drawBoard() {
+            // Code to draw the Tetris board
+        }
+
+        function drawPiece() {
+            // Code to draw the current Tetris piece
+        }
+
+        function movePiece(direction) {
+            // Code to move the current Tetris piece in the specified direction
+        }
+
+        function rotatePiece() {
+            // Code to rotate the current Tetris piece
+        }
+
+        function update() {
+            // Code to update the game state
+        }
+
+        function startGame() {
+            // Code to start the game
+        }
+
+        startGame();
+
+        addEventListener('keydown', (e) => {
+            // Code to handle keyboard input
+        });
+    </script>
+
+</body>
+
+</html>

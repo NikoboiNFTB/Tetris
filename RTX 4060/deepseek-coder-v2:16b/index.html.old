@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="tetris"></canvas>
+    <script>
+        const canvas = document.getElementById('tetris');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 240;
+        canvas.height = 400;
+
+        const gridSize = 30;
+        const rows = canvas.height / gridSize;
+        const columns = canvas.width / gridSize;
+
+        // Create the grid
+        let grid = new Array(rows).fill().map(() => new Array(columns).fill(0));
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < columns; col++) {
+                    if (grid[row][col] === 0) {
+                        ctx.fillStyle = '#f0f0f0';
+                    } else {
+                        ctx.fillStyle = '#000';
+                    }
+                    ctx.fillRect(col * gridSize, row * gridSize, gridSize, gridSize);
+                }
+            }
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>
