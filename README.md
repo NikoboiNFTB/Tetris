@@ -1,6 +1,6 @@
 # Tetris
 
-"Make a playable Tetris game" benchmark for various LLMs (local > cloud).
+"Make a playable Tetris game" benchmark for various LLMs.
 
 ## The Benchmark
 
@@ -36,21 +36,33 @@ for f in $(find . -name "index.html"); do
 done
 ```
 
-#### Table
+#### Cloud Models
 
-| GPU        | Model                   | Code                                                    | Result                                                               | Score  |
-|------------|-------------------------|---------------------------------------------------------|----------------------------------------------------------------------|--------|
-| Cloud      | chatgpt.com             | [index.html](/chatgpt.com/index.html)                   | [Website](https://tetris.nikoboi.dev/chatgpt.com/)                   | Okay   |
-| Cloud      | gemini-cli (Gemini 2.5) | [index.html](/gemini-cli/Gemini2.5/index.html)          | [Website](https://tetris.nikoboi.dev/gemini-cli/Gemini2.5/)          | Meh    |
-| RTX5060 Ti | gpt-oss:20b             | [index.html](/RTX5060Ti/gpt-oss:20b/index.html)         | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)         | Goated |
-| RTX4060    | deepseek-coder-v2:16b   | [index.html](/RTX4060/deepseek-coder-v2:16b/index.html) | [Website](https://tetris.nikoboi.dev/RTX4060/deepseek-coder-v2:16b/) | Error  |
-| RTX4060    | gemma3:4b               | [index.html](/RTX4060/gemma3:4b/index.html)             | [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:4b/)             | Error  |
-| RTX4060    | codellama:7b            | [index.html](/RTX4060/codellama:7b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codellama:7b/)          | Error  |
-| RTX4060    | qwen2.5-coder:7b        | [index.html](/RTX4060/qwen2.5-coder:7b/index.html)      | [Website](https://tetris.nikoboi.dev/RTX4060/qwen2.5-coder:7b/)      | Error  |
-| RTX4060    | codegemma:7b            | [index.html](/RTX4060/codegemma:7b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codegemma:7b/)          | Failed |
-| RTX4060    | gpt-oss:20b             | [index.html](/RTX4060/gpt-oss:20b/index.html)           | [Website](https://tetris.nikoboi.dev/RTX4060/gpt-oss:20b/)           | Error  |
-| RTX4060    | codegemma:2b            | [index.html](/RTX4060/codegemma:2b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codegemma:2b/)          | Failed |
-| RTX4060    | gemma3:12b              | [index.html](/RTX4060/gemma3:12b/index.html)            | [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:12b/)            | Error  |
+| Model                   | Code                                                    | Result                                                               | Score  |
+|-------------------------|---------------------------------------------------------|----------------------------------------------------------------------|--------|
+| chatgpt.com             | [index.html](/chatgpt.com/index.html)                   | [Website](https://tetris.nikoboi.dev/chatgpt.com/)                   | Okay   |
+| gemini-cli (Gemini 2.5) | [index.html](/gemini-cli/Gemini2.5/index.html)          | [Website](https://tetris.nikoboi.dev/gemini-cli/Gemini2.5/)          | Meh    |
+
+#### RTX 5060 Ti (16Gb)
+
+| Model                   | Code                                                    | Result                                                               | Score  |
+|-------------------------|---------------------------------------------------------|----------------------------------------------------------------------|--------|
+| codellama:7b            | [index.html](/RTX5060Ti/codellama:7b/index.html)        | [Website](https://tetris.nikoboi.dev/RTX5060Ti/codellama:7b/)        | Error  |
+| gemma3:12b              | [index.html](/RTX5060Ti/gemma3:12b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gemma3:12b/)          | Error  |
+| gpt-oss:20b             | [index.html](/RTX5060Ti/gpt-oss:20b/index.html)         | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)         | Goated |
+
+#### RTX 4060 (8Gb)
+
+| Model                   | Code                                                    | Result                                                               | Score  |
+|-------------------------|---------------------------------------------------------|----------------------------------------------------------------------|--------|
+| codegemma:2b            | [index.html](/RTX4060/codegemma:2b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codegemma:2b/)          | Failed |
+| codegemma:7b            | [index.html](/RTX4060/codegemma:7b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codegemma:7b/)          | Failed |
+| codellama:7b            | [index.html](/RTX4060/codellama:7b/index.html)          | [Website](https://tetris.nikoboi.dev/RTX4060/codellama:7b/)          | Error  |
+| deepseek-coder-v2:16b   | [index.html](/RTX4060/deepseek-coder-v2:16b/index.html) | [Website](https://tetris.nikoboi.dev/RTX4060/deepseek-coder-v2:16b/) | Error  |
+| gemma3:4b               | [index.html](/RTX4060/gemma3:4b/index.html)             | [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:4b/)             | Error  |
+| gemma3:12b              | [index.html](/RTX4060/gemma3:12b/index.html)            | [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:12b/)            | Error  |
+| gpt-oss:20b             | [index.html](/RTX4060/gpt-oss:20b/index.html)           | [Website](https://tetris.nikoboi.dev/RTX4060/gpt-oss:20b/)           | Error  |
+| qwen2.5-coder:7b        | [index.html](/RTX4060/qwen2.5-coder:7b/index.html)      | [Website](https://tetris.nikoboi.dev/RTX4060/qwen2.5-coder:7b/)      | Error  |
 
 ## Contributing
 
