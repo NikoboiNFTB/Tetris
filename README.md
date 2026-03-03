@@ -1,6 +1,6 @@
 # Tetris
 
-"Make a playable Tetris game" benchmark for various LLMs.
+Tetris benchmark for various LLMs, local and remote.
 
 ## The Benchmark
 
@@ -45,12 +45,17 @@ done
 
 #### RTX 5060 Ti (16Gb)
 
+Each model is run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension.
+
 | Model                                    | Code                                                                         | Result                                                                                    | Score   |
 |------------------------------------------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|---------|
 | codellama:7b                             | [index.html](/RTX5060Ti/codellama:7b/index.html)                             | [Website](https://tetris.nikoboi.dev/RTX5060Ti/codellama:7b/)                             | Error   |
 | deepseek-coder-v2:16b-lite-instruct-q6_K | [index.html](/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/index.html) | [Website](https://tetris.nikoboi.dev/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/) | Failed  |
 | gemma3:12b                               | [index.html](/RTX5060Ti/gemma3:12b/index.html)                               | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gemma3:12b/)                               | Error   |
-| gpt-oss:20b                              | [index.html](/RTX5060Ti/gpt-oss:20b/index.html)                              | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)                              | Goated  |
+| gpt-oss:20b                              | [index.html](/RTX5060Ti/gpt-oss:20b/index.html)                              | [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)                              | Best    |
+| qwen2.5-coder:7b-instruct                | [index.html](/RTX5060Ti/qwen2.5-coder:7b-instruct/index.html)                | [Website](https://tetris.nikoboi.dev/RTX5060Ti/qwen2.5-coder:7b-instruct/)                | Error   |
+| starcoder2:15b                           | [index.html](/RTX5060Ti/starcoder2:15b/index.html)                           | [Website](https://tetris.nikoboi.dev/RTX5060Ti/starcoder2:15b/index.html)                 | Failed  |
+| starcoder2:15b-instruct                  | [index.html](/RTX5060Ti/starcoder2:15b-instruct/index.html)                  | [Website](https://tetris.nikoboi.dev/RTX5060Ti/starcoder2:15b-instruct/index.html)        | Error   |
 
 #### RTX 4060 (8Gb)
 
