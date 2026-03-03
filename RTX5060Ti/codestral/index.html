@@ -1,0 +1,125 @@
+<canvas id="tetris" width="300" height="600"></canvas>
+<script>
+    const canvas = document.getElementById('tetris');
+    const context = canvas.getContext('2d');
+
+    // Game variables and constants
+    let score = 0;
+    const blockSize = 30;
+    const rows = canvas.height / blockSize;
+    const columns = canvas.width / blockSize;
+    let board = Array(columns).fill().map(() => Array(rows).fill(0));
+    let currentPiece, currentX, currentY;
+
+    // Pieces and their shapes
+    const pieces = [
+        [[1, 1, 1, 1]],
+        [[2, 2], [2, 2]],
+        [[3, 0, 0], [3, 3, 3]],
+        [[4, 4, 0], [0, 4, 4]],
+        // Add more pieces here if needed
+    ];
+
+    function drawBlock(x, y, color) {
+        context.fillStyle = color;
+        context.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+        context.strokeStyle = 'black';
+        context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
+    }
+
+    function drawBoard() {
+        for (let i = 0; i < columns; i++) {
+            for (let j = 0; j < rows; j++) {
+                if (board[i][j]) {
+                    const color = `hsl(${board[i][j] * 360}, 100%, 50%)`;
+                    drawBlock(i, j, color);
+                }
+            }
+        }
+    }
+
+    function newPiece() {
+        const randomIndex = Math.floor(Math.random() * pieces.length);
+        currentPiece = pieces[randomIndex];
+        currentX = Math.floor(columns / 2) - 1;
+        currentY = 0;
+    }
+
+    function collides(piece, x, y) {
+        for (let i = 0; i < piece.length; i++) {
+            for (let j = 0; j < piece[i].length; j++) {
+                if (
+                    piece[i][j] &&
+                    ((board[x + j] === undefined || board[x + j][y + i]) || y + i >= rows)
+                ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function mergePiece() {
+        for (let i = 0; i < currentPiece.length; i++) {
+            for (let j = 0; j < currentPiece[i].length; j++) {
+                if (currentPiece[i][j]) {
+                    board[currentX + j][currentY + i] = currentPiece[i][j];
+                }
+            }
+        }
+    }
+
+    function clearLines() {
+        for (let i = rows - 1; i >= 0; i--) {
+            if (board.every(row => row[i])) {
+                score += 10;
+                board.forEach(row => row.splice(i, 1));
+                board.forEach(row => row.unshift(0));
+                i++;
+            }
+        }
+    }
+
+    function gameOver() {
+        if (currentPiece && collides(currentPiece, currentX, currentY)) {
+            alert('Game Over! Your score is ' + score);
+            board = Array(columns).fill().map(() => Array(rows).fill(0));
+            score = 0;
+            newPiece();
+        }
+    }
+
+    function update() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawBoard();
+        if (collides(currentPiece, currentX, currentY + 1)) {
+            mergePiece();
+            clearLines();
+            gameOver();
+            newPiece();
+        } else {
+            currentY++;
+        }
+    }
+
+    // Event listeners for moving the piece
+    document.addEventListener('keydown', event => {
+        if (event.code === 'ArrowLeft') {
+            if (!collides(currentPiece, currentX - 1, currentY)) {
+                currentX--;
+            }
+        } else if (event.code === 'ArrowRight') {
+            if (!collides(currentPiece, currentX + 1, currentY)) {
+                currentX++;
+            }
+        } else if (event.code === 'ArrowDown') {
+            if (!collides(currentPiece, currentX, currentY + 1)) {
+                currentY++;
+            }
+        }
+    });
+
+    // Start the game
+    newPiece();
+    setInterval(update, 1000 / 60);
+</script>
