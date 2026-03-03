@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        canvas {
+            display: block;
+            margin: auto;
+        }
+
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tetris</h1>
+    <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+    <script>
+        // Tetris game constants
+        const canvas = document.getElementById('tetrisCanvas');
+        const context = canvas.getContext('2d');
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const blockSize = 30;
+        const boardWidth = Math.floor(canvasWidth / blockSize);
+        const boardHeight = Math.floor(canvasHeight / blockSize);
+
+        // Game state variables
+        let board = [];
+        let currentPiece = [];
+        let nextPiece = [];
+        let score = 0;
+
+        // Tetris game functions
+
+        function drawCanvas() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            drawBoard();
+            drawCurrentPiece();
+            drawNextPiece();
+            drawScore();
+        }
+
+        function drawBoard() {
+            for (let y = 0; y < boardHeight; y++) {
+                for (let x = 0; x < boardWidth; x++) {
+                    if (board[y][x] !== null) {
+                        context.fillStyle = 'blue';
+                        context.fillRect(x * blockSize, y * blockSize, blockSize - 1, blockSize - 1);
+                    }
+                }
+            }
+        }
+
+        function drawCurrentPiece() {
+            for (let i = 0; i < currentPiece.length; i++) {
+                const x = currentPiece[i][0] + pieceX;
+                const y = currentPiece[i][1] + pieceY;
+                context.fillStyle = 'red';
+                context.fillRect(x * blockSize, y * blockSize, blockSize - 1, blockSize - 1);
+            }
+        }
+
+        function drawNextPiece() {
+            // Draw next piece here
+        }
+
+        function drawScore() {
+            context.font = '20px Arial';
+            context.textAlign = 'left';
+            context.fillStyle = 'white';
+            context.fillText(`Score: ${score}`, 10, canvasHeight - 10);
+        }
+
+        // Tetris game initialization
+        initializeBoard();
+        generateNewPiece();
+
+        // Game loop
+        setInterval(() => {
+            if (isGameOver()) {
+                alert('Game Over!');
+                location.reload();
+            } else {
+                updateGame();
+                drawCanvas();
+            }
+        }, 500);
+
+        function initializeBoard() {
+            board = Array.from({ length: boardHeight }, () =>
+                new Array(boardWidth).fill(null)
+            );
+        }
+
+        function generateNewPiece() {
+            // Generate a random piece here
+        }
+
+        function updateGame() {
+            // Update game state here
+        }
+
+        function isGameOver() {
+            // Check if the game is over here
+        }
+    </script>
+</body>
+
+</html>
