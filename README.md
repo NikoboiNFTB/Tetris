@@ -34,19 +34,19 @@ Write a fully functional game of Tetris that can be played in any web browser. C
 
 -->
 
-|   Score   |   Meaning                                                                                                                                 |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-|   10/10   |   Perfect: Fully functional Tetris with polished UI, smooth controls, proper scoring, and no bugs.                                        |
-|   9/10    |   Almost perfect: Minor issues, but gameplay is fully solid.                                                                              |
-|   8/10    |   Works well: Game is fully playable, controls are responsive, small bugs may exist, but overall solid.                                   |
-|   7/10    |   Functional with issues: Core gameplay works, but noticeable bugs, missing features or minor visual inconsistencies.                     |
-|   6/10    |   Mostly functional: Game can be played, but missing multiple features, controls or scoring may be awkward, or moderate bugs present.     |
-|   5/10    |   Partially functional: Can move pieces, but game often breaks, lacks scoring, rotation, or proper collision detection.                   |
-|   4/10    |   Barely functional: Some pieces appear or move, but game is frustrating or incomplete, major mechanics missing.                          |
-|   3/10    |   Very limited functionality: Pieces render incorrectly, fall erratically, or game loop barely works.                                     |
-|   2/10    |   Non-functional but looks right: UI renders or pieces appear, but no playable mechanics.                                                 |
-|   1/10    |   Non-functional: Code runs, but nothing works (no pieces, no movement, no collisions).                                                   |
-|   0/10    |   Disqualified/Error: Code does not run at all, crashes immediately, or is empty.                                                         |
+|   Score   |   Meaning                                                                                                                 |
+|-----------|---------------------------------------------------------------------------------------------------------------------------|
+|   10/10   |   Perfect: Fully functional Tetris with polished UI, smooth controls, proper scoring, and no bugs.                        |
+|   9/10    |   Almost perfect: Minor issues, but gameplay is fully solid.                                                              |
+|   8/10    |   Works well: Game is fully playable, controls are responsive, small bugs may exist, but overall solid.                   |
+|   7/10    |   Functional with issues: Core gameplay works, but noticeable bugs, missing features or minor visual inconsistencies.     |
+|   6/10    |   Mostly functional: Game can be played, but missing multiple core features                                               |
+|   5/10    |   Partially functional: Can move pieces, but non-playable.                                                                |
+|   4/10    |   Barely functional: Some pieces appear or move, but game is frustrating or incomplete, major mechanics missing.          |
+|   3/10    |   Very limited functionality: Barely anything works. Things move but don't work.                                          |
+|   2/10    |   Non-functional but looks right: The generated site *looks* like a game of Tetris but nothing happens.                   |
+|   1/10    |   Non-functional: Generated code but fully non-functional                                                                 |
+|   0/10    |   Disqualified/Error: No code generated at all.                                                                           |
 
 #### Cloud Models
 
