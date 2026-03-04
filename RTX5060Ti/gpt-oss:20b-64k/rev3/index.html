@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tetris</title>
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: #fff;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #555;
+            background: #000;
+            display: block;
+            margin: auto;
+        }
+
+        #info {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="game" width="240" height="480"></canvas>
+    <div id="info">
+        <p>Score: <span id="score">0</span></p>
+        <p>Level: <span id="level">1</span></p>
+        <p>Lines: <span id="lines">0</span></p>
+        <p>Controls: Arrow keys to move/rotate, Space to hard drop</p>
+    </div>
+    <script>
+        const COLS = 10, ROWS = 20, BLOCK_SIZE = 24;
+        const SHAPES = [
+            [[1, 1, 1, 1]], // I
+            [[1, 1, 1], [0, 1, 0]], // T
+            [[1, 1, 0], [0, 1, 1]], // S
+            [[0, 1, 1], [1, 1, 0]], // Z
+            [[1, 0, 0], [1, 0, 0], [1, 1, 0]], // J
+            [[0, 0, 1], [0, 0, 1], [0, 1, 1]], // L
+            [[1, 1], [1, 1]] // O
+        ];
+        const COLORS = ['cyan', 'purple', 'green', 'red', 'blue', 'orange', 'yellow'];
+        const canvas = document.getElementById('game'), ctx = canvas.getContext('2d');
+        let board = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+        let score = 0, level = 1, linesCleared = 0;
+        let current, timer, speed = 300;
+        function drawCell(x, y, color) { ctx.fillStyle = color; ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); ctx.strokeStyle = '#222'; ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); }
+        function draw() {
+            ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height); board.forEach((row, y) => row.forEach((cell, x) => cell && drawCell(x, y, cell))); current.shape.forEach((cell, y) => cell.forEach((val, x) => val && drawCell(x + current.x, y + current.y, current.color)));
+        }
+        function rotate(shape) { return shape[0].map((_, i) => shape.map(row => row[row.length - 1 - i] || 0)); }
+        function spawn() { let idx = Math.floor(Math.random() * SHAPES.length); current = { shape: SHAPES[idx], color: COLORS[idx], x: Math.floor((COLS - shapes[idx][0].length) / 2), y: 0 }; if (checkCollision()) gameOver(); }
+        function checkCollision(offset = { x: 0, y: 0 }, shape = current.shape) {
+            return current.shape.some((row, y) => row.some((cell, x) => cell && (
+                (x + current.x + offset.x < 0 || x + current.x + offset.x >= COLS) ||
+                (y + current.y + offset.y >= ROWS) || board[y + current.y + offset.y][x + current.x + offset.x]
+            )));
+        }
+        function lock() { current.shape.forEach((row, y) => row.forEach((cell, x) => { if (cell) board[y + current.y][x + current.x] = current.color; }); clearLines(); spawn(); }
+        function move(dx, dy) { if (!checkCollision({ x: dx, y: dy })) current.x += dx, current.y += dy; else if (dy > 0) lock(); }
+        function rotateCurrent() { let rotated = rotate(current.shape); if (!checkCollision({ x: 0, y: 0 }, rotated)) current.shape = rotated; }
+        function clearLines() {
+            let newBoard = board.filter(row => row.some(cell => !cell)); let cleared = ROWS - newBoard.length; if (cleared > 0) { for (let i = 0; i < cleared; i++)newBoard.unshift(Array(COLS).fill(null)); board = newBoard; score += cleared * 100; linesCleared += cleared; if (linesCleared >= level * 10) { level++; speed = Math.max(50, speed - 30); } updateUI(); }
+        }
+        function updateUI() { document.getElementById('score').textContent = score; document.getElementById('level').textContent = level; document.getElementById('lines').textContent = linesCleared; }
+        function drop() { move(0, 1); if (checkCollision({ x: 0, y: 1 })) move(0, 0); }
+        function hardDrop() { while (!checkCollision({ x: 0, y: 1 })) move(0, 1); lock(); }
+        function gameOver() { clearInterval(timer); alert('Game Over! Score: ' + score); location.reload(); }
+        function loop() { draw(); move(0, 1); }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') move(-1, 0); else if (e.key === 'ArrowRight') move(1, 0); else if (e.key === 'ArrowDown') move(0, 1); else if (e.key === 'ArrowUp') rotateCurrent(); else if (e.key === ' ') hardDrop();
+        });
+        spawn(); timer = setInterval(loop, speed); updateUI();
+    </script>
+</body>
+
+</html>
