@@ -62,7 +62,7 @@
                 (y + current.y + offset.y >= ROWS) || board[y + current.y + offset.y][x + current.x + offset.x]
             )));
         }
-        function lock() { current.shape.forEach((row, y) => row.forEach((cell, x) => { if (cell) board[y + current.y][x + current.x] = current.color; }); clearLines(); spawn(); }
+        function lock() { current.shape.forEach((row, y) => row.forEach((cell, x) => { if (cell) board[y + current.y][x + current.x] = current.color; })); clearLines(); spawn(); }
         function move(dx, dy) { if (!checkCollision({ x: dx, y: dy })) current.x += dx, current.y += dy; else if (dy > 0) lock(); }
         function rotateCurrent() { let rotated = rotate(current.shape); if (!checkCollision({ x: 0, y: 0 }, rotated)) current.shape = rotated; }
         function clearLines() {
