@@ -20,33 +20,33 @@ Write a fully functional game of Tetris that can be played in any web browser. C
 
 ### Results
 
-#### Command
-
-To see all results, in the Tetris repo folder, run:
-
-```bash
-for f in $(find . -name "index.html"); do
-    echo
-    echo "======== $f ========"
-    echo
-    cat $f
-    echo
-    echo "======== $f ========"
-    echo
-done
-```
+#### Criteria
 
 <!--
 
-    Yeah turn offwrapped lines for this shit 💀
+    Yeah turn offwrapped lines for this section 💀
     micro/nano/vim ~/.config/VSCodium/User/settings.json
     Add:
     "[markdown]": {
         "editor.wordWrap": "off"
     }
-    ^ Indent once, insidethe closing bracket.
+    ^ Indent once, inside the closing bracket.
 
 -->
+
+|   Score   |   Meaning                                                                                                                                 |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+|   10/10   |   Perfect: Fully functional Tetris with polished UI, smooth controls, proper scoring, and no bugs.                                        |
+|   9/10    |   Almost perfect: Minor issues, but gameplay is fully solid.                                                                              |
+|   8/10    |   Works well: Game is fully playable, controls are responsive, small bugs may exist, but overall solid.                                   |
+|   7/10    |   Functional with issues: Core gameplay works, but noticeable bugs, missing features or minor visual inconsistencies.                     |
+|   6/10    |   Mostly functional: Game can be played, but missing multiple features, controls or scoring may be awkward, or moderate bugs present.     |
+|   5/10    |   Partially functional: Can move pieces, but game often breaks, lacks scoring, rotation, or proper collision detection.                   |
+|   4/10    |   Barely functional: Some pieces appear or move, but game is frustrating or incomplete, major mechanics missing.                          |
+|   3/10    |   Very limited functionality: Pieces render incorrectly, fall erratically, or game loop barely works.                                     |
+|   2/10    |   Non-functional but looks right: UI renders or pieces appear, but no playable mechanics.                                                 |
+|   1/10    |   Non-functional: Code runs, but nothing works (no pieces, no movement, no collisions).                                                   |
+|   0/10    |   Disqualified/Error: Code does not run at all, crashes immediately, or is empty.                                                         |
 
 #### Cloud Models
 
@@ -66,15 +66,15 @@ Each model is run using [Continue](https://open-vsx.org/extension/Continue/conti
 |   [deepseek-coder-v2:16b-lite-instruct-q6_K](https://ollama.com/library/deepseek-coder-v2:16b-lite-instruct-q6_K)     |   [index.html](/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/index.html)        |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/)       |   Failed      |
 |   [gemma3:12b](https://ollama.com/library/gemma3:12b)                                                                 |   [index.html](/RTX5060Ti/gemma3:12b/index.html)                                      |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gemma3:12b/)                                     |   Error       |
 |   [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b)                                                               |   [index.html](/RTX5060Ti/gpt-oss:20b/index.html)                                     |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)                                    |   Best        |
-|   [gpt-oss:20b-32k/rev1](https://ollama.com/library/gpt-oss:20b-32k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev1/)                           |               |
-|   [gpt-oss:20b-32k/rev2](https://ollama.com/library/gpt-oss:20b-32k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev2/)                           |               |
-|   [gpt-oss:20b-48k](https://ollama.com/library/gpt-oss:20b-48k)                                                       |   [index.html](/RTX5060Ti/gpt-oss:20b-48k/index.html)                                 |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-48k/)                                |               |
-|   [gpt-oss:20b-64k/rev1](https://ollama.com/library/gpt-oss:20b-64k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev1/)                           |               |
-|   [gpt-oss:20b-64k/rev2](https://ollama.com/library/gpt-oss:20b-64k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev2/)                           |               |
-|   [gpt-oss:20b-64k/rev3](https://ollama.com/library/gpt-oss:20b-64k/rev3)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev3/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev3/)                           |               |
+|   [gpt-oss:20b-32k/rev1](https://ollama.com/library/gpt-oss:20b-32k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev1/)                           |   Okay        |
+|   [gpt-oss:20b-32k/rev2](https://ollama.com/library/gpt-oss:20b-32k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev2/)                           |   Bad         |
+|   [gpt-oss:20b-48k](https://ollama.com/library/gpt-oss:20b-48k)                                                       |   [index.html](/RTX5060Ti/gpt-oss:20b-48k/index.html)                                 |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-48k/)                                |   Error       |
+|   [gpt-oss:20b-64k/rev1](https://ollama.com/library/gpt-oss:20b-64k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev1/)                           |   Bad         |
+|   [gpt-oss:20b-64k/rev2](https://ollama.com/library/gpt-oss:20b-64k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev2/)                           |   Failed      |
+|   [gpt-oss:20b-64k/rev3](https://ollama.com/library/gpt-oss:20b-64k/rev3)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev3/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev3/)                           |   Failed      |
 |   [mistral-nemo:latest](https://ollama.com/library/mistral-nemo:latest)                                               |   [index.html](/RTX5060Ti/mistral-nemo/index.html)                                    |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/mistral-nemo/)                                   |   Failed      |
 |   [mistral:7b](https://ollama.com/library/mistral:7b)                                                                 |   [index.html](/RTX5060Ti/mistral:7b/index.html)                                      |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/mistral:7b/)                                     |   Error       |
-|   [codellama:7b](https://ollama.com/library/codellama:7b)                                                             |   [index.html](/RTX5060Ti/codellama:7b/index.html)                                    |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/codellama:7b/)                                   |               |
+|   [codellama:7b](https://ollama.com/library/codellama:7b)                                                             |   [index.html](/RTX5060Ti/codellama:7b/index.html)                                    |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/codellama:7b/)                                   |   Failed      |
 |   [qwen2.5-coder:7b-instruct](https://ollama.com/library/qwen2.5-coder:7b-instruct)                                   |   [index.html](/RTX5060Ti/qwen2.5-coder:7b-instruct/index.html)                       |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/qwen2.5-coder:7b-instruct/)                      |   Error       |
 |   [starcoder2:15b](https://ollama.com/library/starcoder2:15b)                                                         |   [index.html](/RTX5060Ti/starcoder2:15b/index.html)                                  |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/starcoder2:15b/index.html)                       |   Failed      |
 |   [starcoder2:15b-instruct](https://ollama.com/library/starcoder2:15b-instruct)                                       |   [index.html](/RTX5060Ti/starcoder2:15b-instruct/index.html)                         |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/starcoder2:15b-instruct/index.html)              |   Error       |
