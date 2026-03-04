@@ -20,23 +20,25 @@ Write a fully functional game of Tetris that can be played in any web browser. C
 
 ### Results
 
+Models with no link are customized models.
+
 #### Criteria
 
 <!--
 
-    Yeah turn offwrapped lines for this section 💀
-    micro/nano/vim ~/.config/VSCodium/User/settings.json
-    Add:
-    "[markdown]": {
-        "editor.wordWrap": "off"
-    }
-    ^ Indent once, inside the closing bracket.
+Yeah turn offwrapped lines for this section 💀
+nano ~/.config/VSCodium/User/settings.json
+Add:
+"[markdown]": {
+    "editor.wordWrap": "off"
+}
+^ Indent once, inside the closing bracket.
 
 -->
 
 |   Score   |   Meaning                                                                                                                 |
 |-----------|---------------------------------------------------------------------------------------------------------------------------|
-|   10/10   |   Perfect: Fully functional Tetris with polished UI, smooth controls, proper scoring, and no bugs.                        |
+|   10/10   |   Perfect: Fully functional Tetris with polished UI, smooth controls, proper scoring, and no bugs. Clankers dream.        |
 |   9/10    |   Almost perfect: Minor issues, but gameplay is fully solid.                                                              |
 |   8/10    |   Works well: Game is fully playable, controls are responsive, small bugs may exist, but overall solid.                   |
 |   7/10    |   Functional with issues: Core gameplay works, but noticeable bugs, missing features or minor visual inconsistencies.     |
@@ -57,7 +59,7 @@ Write a fully functional game of Tetris that can be played in any web browser. C
 
 #### RTX 5060 Ti (16Gb)
 
-Each model is run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension.
+Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance on both rigs.
 
 |   Model                                                                                                               |   Code                                                                                |   Result                                                                                          |   Score       |   Comment(s)                                                                                                      |
 |-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------|
@@ -66,12 +68,12 @@ Each model is run using [Continue](https://open-vsx.org/extension/Continue/conti
 |   [deepseek-coder-v2:16b-lite-instruct-q6_K](https://ollama.com/library/deepseek-coder-v2:16b-lite-instruct-q6_K)     |   [index.html](/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/index.html)        |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/deepseek-coder-v2:16b-lite-instruct-q6_K/)       |   2/10        |                                                                                                                   |
 |   [gemma3:12b](https://ollama.com/library/gemma3:12b)                                                                 |   [index.html](/RTX5060Ti/gemma3:12b/index.html)                                      |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gemma3:12b/)                                     |   0/10        |                                                                                                                   |
 |   [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b)                                                               |   [index.html](/RTX5060Ti/gpt-oss:20b/index.html)                                     |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b/)                                    |   9/10        |   Best one yet. / Blocks never fuse when rotated. / Next block doesn't work. / Can't restart without reload.      |
-|   [gpt-oss:20b-32k/rev1](https://ollama.com/library/gpt-oss:20b-32k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev1/)                           |   8/10        |   Feels sluggish. / Doesn't speed up.                                                                             |
-|   [gpt-oss:20b-32k/rev2](https://ollama.com/library/gpt-oss:20b-32k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev2/)                           |   4/10        |   Block appear wrong.                                                                                             |
-|   [gpt-oss:20b-48k](https://ollama.com/library/gpt-oss:20b-48k)                                                       |   [index.html](/RTX5060Ti/gpt-oss:20b-48k/index.html)                                 |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-48k/)                                |   0/10        |                                                                                                                   |
-|   [gpt-oss:20b-64k/rev1](https://ollama.com/library/gpt-oss:20b-64k/rev1)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev1/)                           |   4/10        |   Invisible area.                                                                                                 |
-|   [gpt-oss:20b-64k/rev2](https://ollama.com/library/gpt-oss:20b-64k/rev2)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev2/)                           |   2/10        |                                                                                                                   |
-|   [gpt-oss:20b-64k/rev3](https://ollama.com/library/gpt-oss:20b-64k/rev3)                                             |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev3/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev3/)                           |   2/10        |                                                                                                                   |
+|   gpt-oss:20b-32k/rev1                                                                                                |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev1/)                           |   8/10        |   Feels sluggish. / Doesn't speed up.                                                                             |
+|   gpt-oss:20b-32k/rev2                                                                                                |   [index.html](/RTX5060Ti/gpt-oss:20b-32k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-32k/rev2/)                           |   4/10        |   Block appear wrong.                                                                                             |
+|   gpt-oss:20b-48k                                                                                                     |   [index.html](/RTX5060Ti/gpt-oss:20b-48k/index.html)                                 |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-48k/)                                |   0/10        |                                                                                                                   |
+|   gpt-oss:20b-64k/rev1                                                                                                |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev1/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev1/)                           |   4/10        |   Invisible area.                                                                                                 |
+|   gpt-oss:20b-64k/rev2                                                                                                |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev2/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev2/)                           |   2/10        |                                                                                                                   |
+|   gpt-oss:20b-64k/rev3                                                                                                |   [index.html](/RTX5060Ti/gpt-oss:20b-64k/rev3/index.html)                            |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/gpt-oss:20b-64k/rev3/)                           |   2/10        |                                                                                                                   |
 |   [mistral-nemo:latest](https://ollama.com/library/mistral-nemo:latest)                                               |   [index.html](/RTX5060Ti/mistral-nemo/index.html)                                    |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/mistral-nemo/)                                   |   1/10        |                                                                                                                   |
 |   [mistral:7b](https://ollama.com/library/mistral:7b)                                                                 |   [index.html](/RTX5060Ti/mistral:7b/index.html)                                      |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/mistral:7b/)                                     |   0/10        |                                                                                                                   |
 |   [codellama:7b](https://ollama.com/library/codellama:7b)                                                             |   [index.html](/RTX5060Ti/codellama:7b/index.html)                                    |   [Website](https://tetris.nikoboi.dev/RTX5060Ti/codellama:7b/)                                   |   0/10        |                                                                                                                   |
@@ -81,7 +83,7 @@ Each model is run using [Continue](https://open-vsx.org/extension/Continue/conti
 
 #### RTX 4060 (8Gb)
 
-Each model is run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension.
+Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance on both rigs.
 
 |   Model                                                                           |   Code                                                        |   Result                                                                      |   Score       |   Comment(s)      |
 |-----------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|---------------|-------------------|
@@ -89,6 +91,7 @@ Each model is run using [Continue](https://open-vsx.org/extension/Continue/conti
 |   [codegemma:7b](https://ollama.com/library/codegemma:7b)                         |   [index.html](/RTX4060/codegemma:7b/index.html)              |   [Website](https://tetris.nikoboi.dev/RTX4060/codegemma:7b/)                 |   1,5/10      |                   |
 |   [codellama:7b](https://ollama.com/library/codellama:7b)                         |   [index.html](/RTX4060/codellama:7b/index.html)              |   [Website](https://tetris.nikoboi.dev/RTX4060/codellama:7b/)                 |   0/10        |                   |
 |   [deepseek-coder-v2:16b](https://ollama.com/library/deepseek-coder-v2:16b)       |   [index.html](/RTX4060/deepseek-coder-v2:16b/index.html)     |   [Website](https://tetris.nikoboi.dev/RTX4060/deepseek-coder-v2:16b/)        |   0/10        |                   |
+|   gemma3:4b-64k                                                                   |   [index.html](/RTX4060/gemma3:4b-64k/index.html)             |   [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:4b-64k/)                |   2/10        |                   |
 |   [gemma3:4b](https://ollama.com/library/gemma3:4b)                               |   [index.html](/RTX4060/gemma3:4b/index.html)                 |   [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:4b/)                    |   0/10        |                   |
 |   [gemma3:12b](https://ollama.com/library/gemma3:12b)                             |   [index.html](/RTX4060/gemma3:12b/index.html)                |   [Website](https://tetris.nikoboi.dev/RTX4060/gemma3:12b/)                   |   0/10        |                   |
 |   [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b)                           |   [index.html](/RTX4060/gpt-oss:20b/index.html)               |   [Website](https://tetris.nikoboi.dev/RTX4060/gpt-oss:20b/)                  |   0/10        |                   |

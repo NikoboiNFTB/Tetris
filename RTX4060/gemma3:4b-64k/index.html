@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tetris</title>
+    <style>
+        #tetris {
+            width: 240px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .block {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            position: absolute;
+        }
+
+        .block.red {
+            background-color: red;
+        }
+
+        .block.blue {
+            background-color: blue;
+        }
+
+        .block.green {
+            background-color: green;
+        }
+
+        .block.yellow {
+            background-color: yellow;
+        }
+
+        .block.purple {
+            background-color: purple;
+        }
+
+        .block.orange {
+            background-color: orange;
+        }
+
+        #controls {
+            width: 240px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tetris</h1>
+
+    <div id="tetris">
+        <div id="grid"></div>
+    </div>
+
+    <div id="controls">
+        <button id="left">Left</button>
+        <button id="right">Right</button>
+        <button id="down">Down</button>
+        <button id="rotate">Rotate</button>
+        <button id="drop">Drop</button>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const blockSize = 20;
+        const gridWidth = 10;
+        const gridHeight = 20;
+        const cellSize = blockSize / gridWidth;
+
+        let currentPiece = null;
+        let currentX = 0;
+        let currentY = 0;
+        let gameGrid = [];
+
+        //Piece definitions (simplified shapes)
+        const pieces = [
+            { shape: [[1, 1], [1, 1]], color: 'red' },
+            { shape: [[1, 0], [1, 0], [1, 0], [1, 0]], color: 'blue' },
+            { shape: [[0, 1], [0, 1], [1, 1], [1, 1]], color: 'green' },
+            { shape: [[0, 1], [1, 1], [1, 0], [1, 0]], color: 'yellow' },
+            { shape: [[1, 1], [0, 1], [0, 1], [0, 1]], color: 'purple' },
+            { shape: [[1, 0], [1, 1], [1, 1], [1, 1]], color: 'orange' }
+        ];
+
+        // Initialize the grid
+        function initGrid() {
+            gameGrid = [];
+            for (let y = 0; y < gridHeight; y++) {
+                gameGrid[y] = [];
+                for (let x = 0; x < gridWidth; x++) {
+                    gameGrid[y][x] = 0;
+                }
+            }
+        }
+
+        // Create the grid cells
+        function createGridCells() {
+            for (let y = 0; y < gridHeight; y++) {
+                for (let x = 0; x < gridWidth; x++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('block');
+                    cell.style.width = cellSize + 'px';
+                    cell.style.height = cellSize + 'px';
+                    cell.style.left = x * cellSize + 'px';
+                    cell.style.top = y * cellSize + 'px';
+                    grid.appendChild(cell);
+                }
+            }
+        }
+
+        // Spawn a new piece
+        function spawnPiece() {
+            currentPiece = pieces[Math.floor(Math.random() * pieces.length)];
+            currentX = Math.floor(gridWidth / 2) - 1;
+            currentY = 0;
+
+            // Check if the piece fits initially
+            if (!canPlacePiece(currentPiece, currentX, currentY)) {
+                currentPiece = null;
+            }
+        }
+
+        // Check if a piece can be placed at a given position
+        function canPlacePiece(piece, x, y) {
+            for (let i = 0; i < piece.shape.length; i++) {
+                for (let j = 0; j < piece.shape[i].length; j++) {
+                    if (piece.shape[i][j] === 1) {
+                        const gridX = x + j;
+                        const gridY = y + i;
+
+                        if (gridX < 0 || gridX >= gridWidth || gridY < 0 || gridY >= gridHeight ||
+                            gameGrid[gridY][gridX] !== 0) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        // Handle user input (left, right, down, rotate)
+        document.getElementById('left').addEventListener('click', () => {
+            if (currentPiece) {
+                if (canPlacePiece(currentPiece, currentX - 1, currentY)) {
+                    currentX--;
+                }
+            }
+        });
+
+        document.getElementById('right').addEventListener('click', () => {
+            if (currentPiece) {
+                if (canPlacePiece(currentPiece, currentX + 1, currentY)) {
+                    currentX++;
+                }
+            }
+        });
+
+        document.getElementById('down').addEventListener('click', () => {
+            if (currentPiece) {
+                if (canPlacePiece(currentPiece, currentX, currentY + 1)) {
+                    currentY++;
+                } else {
+                    // Piece has landed, clear it and spawn a new one
+                    clearPiece();
+                    spawnPiece();
+                }
+            }
+        });
+
+        document.getElementById('rotate').addEventListener('click', () => {
+            if (currentPiece) {
+                let rotatedPiece = rotatePiece(currentPiece);
+                if (canPlacePiece(rotatedPiece, currentX, currentY)) {
+                    currentPiece = rotatedPiece;
+                }
+            }
+        });
+
+        document.getElementById('drop').addEventListener('click', () => {
+            if (currentPiece) {
+                if (canPlacePiece(currentPiece, currentX, currentY + 1)) {
+                    currentY++;
+                } else {
+                    // Piece has landed, clear it and spawn a new one
+                    clearPiece();
+                    spawnPiece();
+                }
+            }
+        });
+
+
+        // Clear the current piece from the grid
+        function clearPiece() {
+            for (let i = 0; i < currentPiece.shape.length; i++) {
+                for (let j = 0; j < currentPiece.shape[i].length; j++) {
+                    if (currentPiece.shape[i][j] === 1) {
+                        const gridX = currentX + j;
+                        const gridY = currentY + i;
+                        gameGrid[gridY][gridX] = 1; // or whatever value you want to represent the piece
+                    }
+                }
+            }
+        }
+
+        // Rotate the piece (simplified)
+        function rotatePiece(piece) {
+            let rotatedShape = [];
+            for (let i = 0; i < piece.shape.length; i++) {
+                rotatedShape[i] = piece.shape[i].slice().reverse();
+            }
+            return { shape: rotatedShape, color: piece.color };
+        }
+
+        // Start the game
+        initGrid();
+        createGridCells();
+        spawnPiece();
+
+    </script>
+</body>
+
+</html>
