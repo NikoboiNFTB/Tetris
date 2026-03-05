@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Prompt: When a game is over, there's a popup. The popup instantly comes back after it's been clicked away, and the page needs to be reloaded to start over. Make it so that after you click OK on the popup, the game will automatically restart. -->
-
 <head>
     <meta charset="utf‑8">
     <title>🟪 Tetris</title>
@@ -12,42 +10,50 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh;
-            background: #111;
-            color: #fff;
-            font-family: monospace;
-            font-size: 13px;
-            /* 90 % of 14px */
-            overflow: hidden;
-            /* prevent accidental scroll */
-        }
 
-        #game {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 18px;
-            /* 90 % of 20px */
-        }
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+                background: #111;
+                color: #fff;
+                font-family: monospace;
+                font-size: 13px;
+                overflow: hidden
+            }
 
-        #board {
-            border: 1px solid #555;
-        }
+            #game {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
-        #info {
-            margin-top: 9px;
-            text-align: center;
-        }
+                margin-top:18#game {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 18px
+                }
 
-        #info span {
-            display: block;
-            margin: 3px 0;
-        }
+                #board {
+                    border: 1px solid #555
+                }
 
-        #restart {
-            margin-top: 9px;
-            padding: 4.5px 9px;
-        }
+                #info {
+                    margin-top: 9px;
+                    text-align: center
+                }
+
+                #info span {
+                    display: block;
+                    margin: 3px 0
+                }
+
+                #restart {
+                    margin-top: 9px;
+                    padding: 4.5px 9px
+                }
     </style>
 </head>
 
@@ -59,16 +65,17 @@
             <span>Level: <span id="level">1</span></span>
             <span>Lines: <span id="lines">0</span></span>
             <span>Next:</span>
-            <canvas id="next" width="108" height="108" style="border:1px solid #555;"></canvas>
+            <canvas id="next" width="108" height="108" style="border:1px solid 
+#555"></canvas>
         </div>
         <button id="restart">Restart</button>
     </div>
 
     <script>
         /* ---------- Tetris core ---------- */
-
         const COLS = 10, ROWS = 20, BLOCK_SIZE = 27;        // 90 % of 30px
-        const COLORS = ['#00f', '#f00', '#0f0', '#ff0', '#0ff', '#f0f', '#ffa500'];
+        const COLORS = ['#00f', '#f00', '#0f0', '#ff0', '#0ff', '#f0f',
+            '#ffa500'];
 
         const SHAPES = [
             [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
@@ -80,7 +87,10 @@
             [[0, 0, 7], [7, 7, 7], [0, 0, 0]]
         ];
 
-        function createMatrix(w, h) { const m = []; while (h--) m.push(new Array(w).fill(0)); return m; }
+        function createMatrix(w, h) {
+            const m = []; while (h--) m.push(new
+                Array(w).fill(0)); return m;
+        }
         function rotate(m, dir) {
             const N = m.length;
             for (let y = 0; y < N; ++y)
@@ -97,35 +107,44 @@
             return false;
         }
         function merge(a, p) {
-            p.matrix.forEach((r, y) => r.forEach((v, x) => v && (a[y + p.pos.y][x + p.pos.x] = v)));
+            p.matrix.forEach((r, y) => r.forEach((v, x) => v && (a[y + p.pos.y][x +
+                p.pos.x] = v)));
         }
         function sweep() {
             let rc = 0;
             outer: for (let y = a.length - 1; y >= 0; --y) {
-                for (let x = 0; x < a[y].length; ++x) if (a[y][x] === 0) continue outer;
+                for (let x = 0; x < a[y].length; ++x) if (a[y][x] === 0) continue
+                outer;
                 const row = a.splice(y, 1)[0].fill(0); a.unshift(row); ++y;
-                ++rc; lines++; if (rc) { score += rc * 10 * level; level = Math.floor(lines / 10) + 1; }
+                ++rc; lines++; if (rc) {
+                    score += rc * 10 * level; level =
+                        Math.floor(lines / 10) + 1;
+                }
             }
         }
         function drawMatrix(m, off, ctx) {
             m.forEach((r, y) => r.forEach((v, x) => {
                 if (v) {
                     ctx.fillStyle = COLORS[v - 1];
-                    ctx.fillRect((x + off.x) * BLOCK_SIZE, (y + off.y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                    ctx.fillRect((x + off.x) * BLOCK_SIZE, (y + off.y) * BLOCK_SIZE,
+                        BLOCK_SIZE, BLOCK_SIZE);
                     ctx.strokeStyle = '#222';
-                    ctx.strokeRect((x + off.x) * BLOCK_SIZE, (y + off.y) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                    ctx.strokeRect((x + off.x) * BLOCK_SIZE, (y + off.y) * BLOCK_SIZE,
+                        BLOCK_SIZE, BLOCK_SIZE);
                 }
             }));
         }
 
         /* ---------- Game state ---------- */
-
         const a = createMatrix(COLS, ROWS);
-        let player = { pos: { x: 0, y: 0 }, matrix: null, dropCounter: 0, dropInterval: 1000 };
-        let nextPiece = null, score = 0, level = 1, lines = 0, lastT = 0, gameOver = false;
+        let player = {
+            pos: { x: 0, y: 0 }, matrix: null, dropCounter: 0,
+            dropInterval: 1000
+        };
+        let nextPiece = null, score = 0, level = 1, lines = 0, lastT = 0, gameOver
+            = false;
 
         /* ---------- Canvas setup ---------- */
-
         const canvas = document.getElementById('board');
         const ctx = canvas.getContext('2d');
         ctx.font = `${BLOCK_SIZE / 3}px monospace`;
@@ -135,7 +154,6 @@
         const nextCtx = nextCanvas.getContext('2d');
 
         /* ---------- Controls ---------- */
-
         document.addEventListener('keydown', e => {
             if (gameOver) return;
             if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key))
@@ -148,34 +166,56 @@
         });
 
         /* ---------- Game logic ---------- */
-
         function spawnPiece() {
             player.matrix = nextPiece.matrix;
             player.pos.y = 0;
             player.pos.x = (COLS / 2 | 0) - (player.matrix[0].length / 2 | 0);
-            nextPiece = { matrix: SHAPES[Math.floor(Math.random() * SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 } };
-            if (collide(a, player)) { gameOver = true; updateInfo(); alert(`Game Over\nScore: ${score}\nLevel: ${level}\nLines: ${lines}`); }
+            nextPiece = {
+                matrix: SHAPES[Math.floor(Math.random() *
+                    SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 }
+            };
+            if (collide(a, player)) {
+                gameOver = true;
+                updateInfo();
+                alert(`Game Over\nScore: ${score}\nLevel: ${level}\nLines: ${lines}`);
+                // automatically restart after the user dismisses the alert
+                resetGame();
+            }
         }
-        function playerMove(dir) { player.pos.x += dir; if (collide(a, player)) player.pos.x -= dir; }
-        function playerDrop() { player.pos.y++; if (collide(a, player)) { player.pos.y--; merge(a, player); spawnPiece(); sweep(); updateInfo(); } player.dropCounter = 0; }
-        function playerHardDrop() { while (!collide(a, player)) player.pos.y++; player.pos.y--; merge(a, player); spawnPiece(); sweep(); updateInfo(); }
+        function playerMove(dir) {
+            player.pos.x += dir; if (collide(a, player))
+                player.pos.x -= dir;
+        }
+        function playerDrop() {
+            player.pos.y++; if (collide(a, player)) {
+                player.pos.y--; merge(a, player); spawnPiece(); sweep(); updateInfo();
+            }
+            player.dropCounter = 0;
+        }
+        function playerHardDrop() {
+            while (!collide(a, player)) player.pos.y++;
+            player.pos.y--; merge(a, player); spawnPiece(); sweep(); updateInfo();
+        }
         function playerRotate(dir) {
             const pos = player.pos.x; let offs = 1; rotate(player.matrix, dir);
             while (collide(a, player)) {
                 player.pos.x += offs; offs = -(offs + (offs > 0 ? 1 : -1));
-                if (offs > player.matrix[0].length) { rotate(player.matrix, -dir); player.pos.x = pos; return; }
+                if (offs > player.matrix[0].length) {
+                    rotate(player.matrix, -dir);
+                    player.pos.x = pos; return;
+                }
             }
         }
 
         /* ---------- Rendering ---------- */
-
         function draw() {
             ctx.fillStyle = '#111'; ctx.fillRect(0, 0, canvas.width, canvas.height);
             drawMatrix(a, { x: 0, y: 0 }, ctx);
             drawMatrix(player.matrix, player.pos, ctx);
         }
         function drawNext() {
-            nextCtx.fillStyle = '#111'; nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
+            nextCtx.fillStyle = '#111'; nextCtx.fillRect(0, 0, nextCanvas.width,
+                nextCanvas.height);
             const mx = nextPiece.matrix[0].length, my = nextPiece.matrix.length;
             const offX = (nextCanvas.width - mx * BLOCK_SIZE) / 2 / BLOCK_SIZE;
             const offY = (nextCanvas.height - my * BLOCK_SIZE) / 2 / BLOCK_SIZE;
@@ -183,7 +223,6 @@
         }
 
         /* ---------- Game loop ---------- */
-
         function update(t = 0) {
             const delta = t - lastT; lastT = t; player.dropCounter += delta;
             if (player.dropCounter > player.dropInterval / level) playerDrop();
@@ -196,17 +235,25 @@
             drawNext();
         }
 
-        /* ---------- Restart ---------- */
-
-        document.getElementById('restart').addEventListener('click', () => {
-            a.forEach(r => r.fill(0)); score = 0; level = 1; lines = 0; gameOver = false;
-            nextPiece = { matrix: SHAPES[Math.floor(Math.random() * SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 } };
-            spawnPiece(); updateInfo(); lastT = 0; requestAnimationFrame(update);
-        });
+        /* ---------- Restart logic ---------- */
+        function resetGame() {
+            a.forEach(r => r.fill(0));
+            score = 0; level = 1; lines = 0; gameOver = false;
+            nextPiece = {
+                matrix: SHAPES[Math.floor(Math.random() *
+                    SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 }
+            };
+            spawnPiece();
+            updateInfo();
+            lastT = 0;                 // reset timer so the drop speed starts from level 1
+        }
+        document.getElementById('restart').addEventListener('click', resetGame);
 
         /* ---------- Init ---------- */
-
-        nextPiece = { matrix: SHAPES[Math.floor(Math.random() * SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 } };
+        nextPiece = {
+            matrix: SHAPES[Math.floor(Math.random() *
+                SHAPES.length)].map(r => [...r]), pos: { x: 0, y: 0 }
+        };
         spawnPiece(); updateInfo(); requestAnimationFrame(update);
     </script>
 </body>
