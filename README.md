@@ -20,19 +20,21 @@ Write a fully functional game of Tetris that can be played in any web browser. C
 
 ### Results
 
-Models with no link are customized models.
+Models with no link are customized models. Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance.
 
 #### Criteria
 
 <!--
 
-Yeah turn offwrapped lines for this section 💀
+Yeah turn off wrapped lines for this section 💀
 nano ~/.config/VSCodium/User/settings.json
 Add:
-"[markdown]": {
-    "editor.wordWrap": "off"
-}
-^ Indent once, inside the closing bracket.
+
+    "[markdown]": {
+        "editor.wordWrap": "off"
+    }
+
+^ One indendation, right before the closing bracket.
 
 -->
 
@@ -59,8 +61,6 @@ Add:
 
 #### RTX 5060 Ti (16Gb)
 
-Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance on both rigs.
-
 |   Model                                                                                                               |   Code                                                                            |   Result                                                                                      |   Score       |   Comment(s)                                                                                                      |
 |-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------|
 |   [codellama:7b](https://ollama.com/library/codellama:7b)                                                             |   [index.html](/5060Ti/codellama:7b/index.html)                                   |   [Website](https://tetris.nikoboi.dev/5060Ti/codellama:7b/)                                  |   0/10        |                                                                                                                   |
@@ -82,8 +82,6 @@ Models are a mixed bag of being run using [Continue](https://open-vsx.org/extens
 |   [starcoder2:15b-instruct](https://ollama.com/library/starcoder2:15b-instruct)                                       |   [index.html](/5060Ti/starcoder2:15b-instruct/index.html)                        |   [Website](https://tetris.nikoboi.dev/5060Ti/starcoder2:15b-instruct/)                       |   0/10        |                                                                                                                   |
 
 #### RTX 4060 (8Gb)
-
-Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance on both rigs.
 
 |   Model                                                                           |   Code                                                        |   Result                                                                  |   Score       |   Comment(s)      |
 |-----------------------------------------------------------------------------------|---------------------------------------------------------------|---------------------------------------------------------------------------|---------------|-------------------|
