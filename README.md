@@ -2,23 +2,25 @@
 
 Tetris benchmark for various LLMs, local and remote.
 
-## The Benchmark
+## Hardware
 
-### Hardware
+The benchmarks are made on two (or three) rigs:
 
-The benchmarks are made on two rigs:
-
-1. RTX 5060 Ti,AMD Ryzen 5 5500, 32Gb of RAM.
+1. RTX 5060 Ti, AMD Ryzen 5 5500, 32Gb of RAM.
 
 2. RTX 4060, Intel i5-13400F, 32Gb of RAM.
 
-### The Prompt
+3. Cloud models. Who knows.
+
+## The Prompt
+
+### Old Prompt
 
 ```text
 Write a fully functional game of Tetris that can be played in any web browser. Contain everything within a single index.html file.
 ```
 
-AI-generated ultra specific prompt:
+### New Prompt
 
 ```text
 Create a complete, playable implementation of the classic Tetris game that runs in any modern web browser.
@@ -31,7 +33,7 @@ Output requirements:
 Game rules:
 - Playfield size: 10 columns × 20 rows.
 - Implement the seven standard tetrominoes: I, O, T, S, Z, J, L.
-- Pieces must support rotation and proper collision detection with walls, the floor, and placed blocks.
+- Pieces must support clockwise rotation and proper collision detection with walls, the floor, and other placed blocks.
 - Pieces fall automatically at a fixed interval (gravity).
 - When a horizontal line is completely filled it clears and all rows above move down.
 
@@ -39,7 +41,7 @@ Controls:
 - Left Arrow: move piece left
 - Right Arrow: move piece right
 - Down Arrow: soft drop
-- Up Arrow: rotate piece
+- Up Arrow: rotate piece clockwise
 - Space Bar: hard drop (instantly place the piece)
 
 Game features:
@@ -49,20 +51,21 @@ Game features:
 - Provide a restart button after game over.
 
 UI:
-- Render the board visually using HTML + CSS (canvas or grid is acceptable).
+- Render the board visually using HTML + CSS.
 - Clean, readable styling.
 - Layout should scale to different screen sizes.
 
 Code expectations:
 - The output must be a fully runnable file with no missing parts.
 - Organize code clearly with comments explaining the main logic (grid, piece rotation, collision, line clearing).
+- The code must be readable.
 ```
 
-### Results
+## Results
 
 Models with no link are customized models. Models are a mixed bag of being run using [Continue](https://open-vsx.org/extension/Continue/continue) the VSCodium extension and directly through the terminal. Continue seems to severely cripple performance.
 
-#### Criteria
+## Criteria
 
 <!--
 
@@ -92,14 +95,16 @@ Add:
 |   1/10    |   Non-functional: Generated code but fully non-functional                                                                 |
 |   0/10    |   Disqualified/Error: No code generated at all.                                                                           |
 
-#### Cloud Models (Old Prompt)
+## Old Prompt
+
+### Cloud Models
 
 |   Model                                                   |   Code                                                |   Result                                                          |   Score       |   Comment(s)                                                                                                      |
 |-----------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------|
 |   [chatgpt.com](https://chatgpt.com/)                     |   [index.html](/chatgpt.com/index.html)               |   [Website](https://tetris.nikoboi.dev/chatgpt.com/)              |   7/10        |   Blocks can get stuck in walls.  / No space to drop down.    / Rotating near other blocks will fuse them.        |
 |   [gemini-cli](https://geminicli.com/) (Gemini 2.5)       |   [index.html](/gemini-cli/Gemini2.5/index.html)      |   [Website](https://tetris.nikoboi.dev/gemini-cli/Gemini2.5/)     |   5/10        |   Can't rotate pieces.    / No space to drop down.    / Fucking massive.  / Scrolls up and down.                  |
 
-#### RTX 5060 Ti (16Gb) (Old Prompt)
+### RTX 5060 Ti (16Gb)
 
 |   Model                                                                                                               |   Code                                                                                        |   Result                                                                                                  |   Score       |   Comment(s)                                                                                                          |
 |-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -126,7 +131,7 @@ Add:
 |   [starcoder2:15b](https://ollama.com/library/starcoder2:15b)                                                         |   [index.html](/5060Ti/old-prompt/starcoder2:15b/index.html)                                  |   [Website](https://tetris.nikoboi.dev/5060Ti/old-prompt/starcoder2:15b/)                                 |   1/10        |   Bro made a Logout button...                                                                                         |
 |   [starcoder2:15b-instruct](https://ollama.com/library/starcoder2:15b-instruct)                                       |   [index.html](/5060Ti/old-prompt/starcoder2:15b-instruct/index.html)                         |   [Website](https://tetris.nikoboi.dev/5060Ti/old-prompt/starcoder2:15b-instruct/)                        |   0/10        |                                                                                                                       |
 
-#### RTX 4060 (8Gb) (Old Prompt)
+### RTX 4060 (8Gb)
 
 |   Model                                                                           |   Code                                                                    |   Result                                                                              |   Score       |   Comment(s)      |
 |-----------------------------------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------|---------------|-------------------|
@@ -139,6 +144,20 @@ Add:
 |   [gemma3:12b](https://ollama.com/library/gemma3:12b)                             |   [index.html](/4060/old-prompt/gemma3:12b/index.html)                    |   [Website](https://tetris.nikoboi.dev/4060/old-prompt/gemma3:12b/)                   |   0/10        |                   |
 |   [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b)                           |   [index.html](/4060/old-prompt/gpt-oss:20b/index.html)                   |   [Website](https://tetris.nikoboi.dev/4060/old-prompt/gpt-oss:20b/)                  |   0/10        |                   |
 |   [qwen2.5-coder:7b](https://ollama.com/library/qwen2.5-coder:7b)                 |   [index.html](/4060/old-prompt/qwen2.5-coder:7b/index.html)              |   [Website](https://tetris.nikoboi.dev/4060/old-prompt/qwen2.5-coder:7b/)             |   0/10        |                   |
+
+## New Prompt
+
+### Cloud Models
+
+|   Model                                   |   Code                                                    |   Result                                                              |   Score       |   Comment(s)                                                  |
+|-------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------|---------------|---------------------------------------------------------------|
+|   [chatgpt.com](https://chatgpt.com/)     |   [index.html](/chatgpt.com/new-prompt/index.html)        |   [Website](https://tetris.nikoboi.dev/chatgpt.com/new-prompt/)       |   4/10        |   Game is too big to see at once. Can't zoom out to fix.      |
+
+### RTX 5060 Ti (16Gb)
+
+|   Model               |   Code                                                            |   Result                                                                          |   Score       |   Comment(s)                                          |
+|-----------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------|-------------------------------------------------------|
+|   gpt-oss:20b-64k     |   [index.html](/5060Ti/new-prompt/gpt-oss:20b-64k/index.html)     |   [website](https://tetris.nikoboi.dev/5060Ti/new-prompt/gpt-oss:20b-64k/)        |   8/10        |   The Game Over could be a little more obvious.       |
 
 ## Contributing
 
