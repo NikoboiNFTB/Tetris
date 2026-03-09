@@ -99,10 +99,10 @@ Add:
 
 ### Cloud Models
 
-|   Model                                                   |   Code                                                |   Result                                                          |   Score       |   Comment(s)                                                                                                      |
-|-----------------------------------------------------------|-------------------------------------------------------|-------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------|
-|   [chatgpt.com](https://chatgpt.com/)                     |   [index.html](/chatgpt.com/index.html)               |   [Website](https://tetris.nikoboi.dev/chatgpt.com/)              |   7/10        |   Blocks can get stuck in walls.  / No space to drop down.    / Rotating near other blocks will fuse them.        |
-|   [gemini-cli](https://geminicli.com/) (Gemini 2.5)       |   [index.html](/gemini-cli/Gemini2.5/index.html)      |   [Website](https://tetris.nikoboi.dev/gemini-cli/Gemini2.5/)     |   5/10        |   Can't rotate pieces.    / No space to drop down.    / Fucking massive.  / Scrolls up and down.                  |
+|   Model                                                   |   Code                                                |   Result                                                              |   Score       |   Comment(s)                                                                                                      |
+|-----------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------|
+|   [chatgpt.com](https://chatgpt.com/)                     |   [index.html](/chatgpt.com/old-prompt/index.html)     |   [Website](https://tetris.nikoboi.dev/chatgpt.com/old-prompt/)      |   7/10        |   Blocks can get stuck in walls.  / No space to drop down.    / Rotating near other blocks will fuse them.        |
+|   [gemini-cli](https://geminicli.com/) (Gemini 2.5)       |   [index.html](/gemini-cli/Gemini2.5/index.html)      |   [Website](https://tetris.nikoboi.dev/gemini-cli/Gemini2.5/)         |   5/10        |   Can't rotate pieces.    / No space to drop down.    / Fucking massive.  / Scrolls up and down.                  |
 
 ### RTX 5060 Ti (16Gb)
 
