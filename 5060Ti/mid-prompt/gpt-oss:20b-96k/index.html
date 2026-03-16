@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tetris</title>
+<style>
+  body{
+    background:#222;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    margin:0;
+    font-family:sans-serif;
+    color:#eee;
+  }
+  #grid{
+    width:200px;
+    height:400px;
+    display:grid;
+    grid-template-columns:repeat(10,20px);
+    grid-template-rows:repeat(20,20px);
+    gap:1px;
+    background:#111;
+    border:2px solid #555;
+    margin-top:20px;
+  }
+  .cell{
+    width:20px;
+    height:20px;
+    background:#111;
+    box-sizing:border-box;
+  }
+  .block-I{background:cyan;}
+  .block-O{background:yellow;}
+  .block-T{background:purple;}
+  .block-S{background:green;}
+  .block-Z{background:red;}
+  .block-J{background:blue;}
+  .block-L{background:orange;}
+  #status{
+    margin-top:10px;
+    font-size:18px;
+  }
+  #over{
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.8);
+    color:#fff;
+    font-size:48px;
+    display:none;
+    flex-direction:column;
+  }
+</style>
+</head>
+<body>
+<h1>Tetris</h1>
+<div id="grid"></div>
+<div id="status">Score: 0</div>
+<div id="over">Game Over</div>
+
+<script>
+(() => {
+  // Tetromino definitions
+  const PIECES = {
+    I: {
+      rotations: [
+        [[0,1],[1,1],[2,1],[3,1]],
+        [[2,0],[2,1],[2,2],[2,3]],
+        [[0,2],[1,2],[2,2],[3,2]],
+        [[1,0],[1,1],[1,2],[1,3]]
+      ],
+      color: 'I'
+    },
+    O: {
+      rotations: [
+        [[1,0],[2,0],[1,1],[2,1]],
+        [[1,0],[2,0],[1,1],[2,1]],
+        [[1,0],[2,0],[1,1],[2,1]],
+        [[1,0],[2,0],[1,1],[2,1]]
+      ],
+      color: 'O'
+    },
+    T: {
+      rotations: [
+        [[1,0],[0,1],[1,1],[2,1]],
+        [[1,0],[1,1],[2,1],[1,2]],
+        [[0,1],[1,1],[2,1],[1,2]],
+        [[1,0],[0,1],[1,1],[1,2]]
+      ],
+      color: 'T'
+    },
+    S: {
+      rotations: [
+        [[1,0],[2,0],[0,1],[1,1]],
+        [[1,0],[1,1],[2,1],[2,2]],
+        [[1,1],[2,1],[0,2],[1,2]],
+        [[0,0],[0,1],[1,1],[1,2]]
+      ],
+      color: 'S'
+    },
+    Z: {
+      rotations: [
+        [[0,0],[1,0],[1,1],[2,1]],
+        [[2,0],[2,1],[1,1],[1,2]],
+        [[0,1],[1,1],[1,2],[2,2]],
+        [[1,0],[1,1],[0,1],[0,2]]
+      ],
+      color: 'Z'
+    },
+    J: {
+      rotations: [
+        [[0,0],[0,1],[1,1],[2,1]],
+        [[1,0],[2,0],[1,1],[1,2]],
+        [[0,1],[1,1],[2,1],[2,2]],
+        [[1,0],[1,1],[0,2],[1,2]]
+      ],
+      color: 'J'
+    },
+    L: {
+      rotations: [
+        [[2,0],[0,1],[1,1],[2,1]],
+        [[1,0],[1,1],[1,2],[2,2]],
+        [[0,1],[1,1],[2,1],[0,2]],
+        [[0,0],[1,0],[1,1],[1,2]]
+      ],
+      color: 'L'
+    }
+  };
+  const COLORS = {
+    I:'block-I',
+    O:'block-O',
+    T:'block-T',
+    S:'block-S',
+    Z:'block-Z',
+    J:'block-J',
+    L:'block-L'
+  };
+
+  // Grid data
+  const ROWS = 20, COLS = 10;
+  const grid = Array.from({length:ROWS}, ()=>Array(COLS).fill(null));
+
+  // DOM elements
+  const gridElem = document.getElementById('grid');
+  const statusElem = document.getElementById('status');
+  const overElem = document.getElementById('over');
+  const cellElems = Array.from({length:ROWS}, (_, y)=>Array.from({length:COLS}, (_, x)=>{
+    const d=document.createElement('div');
+    d.className='cell';
+    gridElem.appendChild(d);
+    return d;
+  }));
+
+  let active = null;
+  let score = 0;
+  let gravityInterval = null;
+
+  // Utility
+  function canPlace(shape, x, y, rot){
+    const cells = shape.rotations[rot];
+    for(const [dx,dy] of cells){
+      const cx = x+dx, cy=y+dy;
+      if(cx<0||cx>=COLS||cy<0||cy>=ROWS) return false;
+      if(grid[cy][cx]) return false;
+    }
+    return true;
+  }
+
+  function spawn(){
+    const keys=Object.keys(PIECES);
+    const type=keys[Math.floor(Math.random()*keys.length)];
+    const shape=PIECES[type];
+    const x=3, y=0, rot=0;
+    if(!canPlace(shape,x,y,rot)){
+      endGame();
+      return;
+    }
+    active={type, x, y, rot};
+  }
+
+  function lock(){
+    const shape=PIECES[active.type];
+    for(const [dx,dy] of shape.rotations[active.rot]){
+      const cx=active.x+dx, cy=active.y+dy;
+      grid[cy][cx]=active.type;
+    }
+    clearLines();
+    spawn();
+  }
+
+  function clearLines(){
+    let cleared=0;
+    for(let y=ROWS-1; y>=0; y--){
+      if(grid[y].every(cell=>cell)){
+        grid.splice(y,1);
+        grid.unshift(Array(COLS).fill(null));
+        cleared++;
+        y++; // recheck same row after shift
+      }
+    }
+    if(cleared){
+      score += cleared*100;
+      statusElem.textContent=`Score: ${score}`;
+    }
+  }
+
+  function move(dx,dy,rot){
+    const shape=PIECES[active.type];
+    const nx=active.x+dx, ny=active.y+dy, nrot=rot===undefined?active.rot:rot;
+    if(canPlace(shape,nx,ny,nrot)){
+      active.x=nx; active.y=ny; active.rot=nrot;
+      render();
+      return true;
+    }
+    return false;
+  }
+
+  function moveLeft(){ move(-1,0); }
+  function moveRight(){ move(1,0); }
+  function moveDown(){
+    if(!move(0,1)){
+      lock();
+    }
+  }
+  function rotate(){
+    const shape=PIECES[active.type];
+    const nrot=(active.rot+1)%4;
+    move(0,0,nrot);
+  }
+  function hardDrop(){
+    while(move(0,1)){}
+    lock();
+  }
+
+  function render(){
+    for(let y=0;y<ROWS;y++){
+      for(let x=0;x<COLS;x++){
+        let cell = grid[y][x];
+        // active piece overlay
+        if(active){
+          const shape=PIECES[active.type];
+          for(const [dx,dy] of shape.rotations[active.rot]){
+            if(active.x+dx===x && active.y+dy===y){
+              cell=active.type;
+              break;
+            }
+          }
+        }
+        const cellElem=cellElems[y][x];
+        cellElem.className='cell';
+        if(cell){
+          cellElem.classList.add(COLORS[cell]);
+        }
+      }
+    }
+  }
+
+  function endGame(){
+    clearInterval(gravityInterval);
+    overElem.style.display='flex';
+  }
+
+  // Input
+  window.addEventListener('keydown', e=>{
+    if(e.code==='ArrowLeft'){ e.preventDefault(); moveLeft(); }
+    if(e.code==='ArrowRight'){ e.preventDefault(); moveRight(); }
+    if(e.code==='ArrowDown'){ e.preventDefault(); moveDown(); }
+    if(e.code==='ArrowUp'){ e.preventDefault(); rotate(); }
+    if(e.code==='Space'){ e.preventDefault(); hardDrop(); }
+  });
+
+  // Start game
+  spawn();
+  render();
+  gravityInterval = setInterval(moveDown, 500);
+
+})();
+</script>
+</body>
+</html>
