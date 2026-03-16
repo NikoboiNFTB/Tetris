@@ -149,9 +149,9 @@ Add:
 
 ### Cloud Models
 
-|   Model                                   |   Code                                                    |   Result                                                              |   Score       |   Comment(s)                                                  |
-|-------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------|---------------|---------------------------------------------------------------|
-|   [chatgpt.com](https://chatgpt.com/)     |   [index.html](/chatgpt.com/new-prompt/index.html)        |   [Website](https://tetris.nikoboi.dev/chatgpt.com/new-prompt/)       |   4/10        |   Game is too big to see at once. Can't zoom out to fix.      |
+|   Model                                   |   Code                                                    |   Result                                                              |   Score       |   Comment(s)          |
+|-------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------|---------------|-----------------------|
+|   [chatgpt.com](https://chatgpt.com/)     |   [index.html](/chatgpt.com/new-prompt/index.html)        |   [Website](https://tetris.nikoboi.dev/chatgpt.com/new-prompt/)       |   9/10        |   Pretty good.        |
 
 ### RTX 5060 Ti (16Gb)
 
