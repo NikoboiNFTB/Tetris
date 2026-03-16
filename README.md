@@ -157,7 +157,7 @@ Add:
 
 |   Model               |   Code                                                            |   Result                                                                          |   Score       |   Comment(s)                                          |
 |-----------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------|-------------------------------------------------------|
-|   gpt-oss:20b-64k     |   [index.html](/5060Ti/new-prompt/gpt-oss:20b-64k/index.html)     |   [website](https://tetris.nikoboi.dev/5060Ti/new-prompt/gpt-oss:20b-64k/)        |   8/10        |   The Game Over could be a little more obvious.       |
+|   gpt-oss:20b-64k     |   [index.html](/5060Ti/new-prompt/gpt-oss:20b-64k/index.html)     |   [website](https://tetris.nikoboi.dev/5060Ti/new-prompt/gpt-oss:20b-64k/)        |   8/10        |   The "Next" display seems to only do color.          |
 
 ## Contributing
 
