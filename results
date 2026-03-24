@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Config
-HEAD_LINES=20  # Number of lines to show from each file
+HEAD_LINES=20 # Number of lines to show from each file
 
 # Colors
 GREEN='\033[0;32m'  # Filenames
@@ -10,18 +10,18 @@ YELLOW='\033[1;33m' # Command line
 NC='\033[0m'        # No color
 
 for f in $(find . -name "index.html"); do
-    echo
-    echo -e "${CYAN}================================================================${NC}"
-    echo
-    echo -e "${GREEN}   File:"
-    echo -e "${GREEN}       $f${NC}"
-    echo -e "${YELLOW}  View:"
-    echo -e "${YELLOW}      cat \"$f\"${NC}"
-    echo
-    echo -e "${CYAN}----------------------------------------------------------------${NC}"
-    echo
-    head -n "$HEAD_LINES" "$f"
-    echo
-    echo -e "${CYAN}================================================================${NC}"
-    echo
+	echo
+	echo -e "${CYAN}================================================================${NC}"
+	echo
+	echo -e "${GREEN}   File:"
+	echo -e "${GREEN}       $f${NC}"
+	echo -e "${YELLOW}  View:"
+	echo -e "${YELLOW}      cat \"$f\"${NC}"
+	echo
+	echo -e "${CYAN}----------------------------------------------------------------${NC}"
+	echo
+	head -n "$HEAD_LINES" "$f"
+	echo
+	echo -e "${CYAN}================================================================${NC}"
+	echo
 done
