@@ -16,5 +16,6 @@ The game must run in any modern web browser without using external libraries, fr
    - Space Bar: hard drop (instantly place the piece)
 
 **Output**
+
 - Return exactly one file named `index.html`.
 - All HTML, CSS, and JavaScript must be embedded in that file.
