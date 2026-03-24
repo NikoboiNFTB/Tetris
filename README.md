@@ -16,21 +16,23 @@ The benchmarks are made on two (or three) rigs:
 
 ### Old Prompt
 
-```text
+```prompt
 Write a fully functional game of Tetris that can be played in any web browser. Contain everything within a single index.html file.
 ```
 
 ### New Prompt
 
-```text
+```prompt
 Create a complete, playable implementation of the classic Tetris game that runs in any modern web browser.
 
 Output requirements:
+
 - Return exactly one complete file named `index.html`.
 - The entire game must be self-contained in this file with embedded HTML, CSS, and JavaScript.
 - Do not use external libraries, frameworks, CDNs, or additional files.
 
 Game rules:
+
 - Playfield size: 10 columns × 20 rows.
 - Implement the seven standard tetrominoes: I, O, T, S, Z, J, L.
 - Pieces must support clockwise rotation and proper collision detection with walls, the floor, and other placed blocks.
@@ -38,6 +40,7 @@ Game rules:
 - When a horizontal line is completely filled it clears and all rows above move down.
 
 Controls:
+
 - Left Arrow: move piece left
 - Right Arrow: move piece right
 - Down Arrow: soft drop
@@ -45,17 +48,20 @@ Controls:
 - Space Bar: hard drop (instantly place the piece)
 
 Game features:
+
 - Score counter that increases when lines are cleared.
 - Display the next tetromino.
 - Detect game over when new pieces cannot spawn.
 - Provide a restart button after game over.
 
 UI:
+
 - Render the board visually using HTML + CSS.
 - Clean, readable styling.
 - Layout should scale to different screen sizes.
 
 Code expectations:
+
 - The output must be a fully runnable file with no missing parts.
 - Organize code clearly with comments explaining the main logic (grid, piece rotation, collision, line clearing).
 - The code must be readable.
@@ -69,15 +75,19 @@ Models with no link are customized models. Models are a mixed bag of being run u
 
 <!--
 
-Yeah turn off wrapped lines for this section 💀
+Yeah turn off wrapped lines for this section xD
+
 nano ~/.config/VSCodium/User/settings.json
+
+(Or micro or vim or codium or whatever)
+
 Add:
 
-    "[markdown]": {
-        "editor.wordWrap": "off"
-    }
+"[markdown]": {
+    "editor.wordWrap": "off"
+}
 
-^ One indendation, right before the closing bracket.
+^ One indendation.
 
 -->
 
