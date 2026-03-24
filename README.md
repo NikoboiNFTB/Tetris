@@ -145,6 +145,14 @@ Add:
 | [gpt-oss:20b](https://ollama.com/library/gpt-oss:20b)                     | [index.html](/4060/old-prompt/gpt-oss:20b/index.html)           | [Website](https://tetris.nikoboi.dev/4060/old-prompt/gpt-oss:20b/)           | 0/10   |            |
 | [qwen2.5-coder:7b](https://ollama.com/library/qwen2.5-coder:7b)           | [index.html](/4060/old-prompt/qwen2.5-coder:7b/index.html)      | [Website](https://tetris.nikoboi.dev/4060/old-prompt/qwen2.5-coder:7b/)      | 0/10   |            |
 
+## Mid Prompt
+
+RTX 5060 Ti (16Gb)
+
+| Model           | Code                                                        | Result                                                                   | Score | Comment(s) |
+| --------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------ | ----- | ---------- |
+| gpt-oss:20b-96k | [index-html](/5060Ti/mid-prompt/gpt-oss:20b-96k/index.html) | [Website](https://tetris.nikoboi.dev/5060Ti/mid-prompt/gpt-oss:20b-96k/) | 7/10  | Weird.     |
+
 ## New Prompt
 
 ### Cloud Models
@@ -158,6 +166,7 @@ Add:
 | Model           | Code                                                        | Result                                                                   | Score | Comment(s)                                 |
 | --------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------ | ----- | ------------------------------------------ |
 | gpt-oss:20b-64k | [index.html](/5060Ti/new-prompt/gpt-oss:20b-64k/index.html) | [website](https://tetris.nikoboi.dev/5060Ti/new-prompt/gpt-oss:20b-64k/) | 8/10  | The "Next" display seems to only do color. |
+| gpt-oss:20b-96k | [index.html](/5060Ti/new-prompt/gpt-oss:20b-96k/index.html) | [website](https://tetris.nikoboi.dev/5060Ti/new-prompt/gpt-oss:20b-96k/) | 2/10  |                                            |
 
 ## Contributing
 
